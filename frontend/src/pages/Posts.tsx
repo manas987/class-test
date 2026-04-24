@@ -51,7 +51,11 @@ export function Posts() {
     } else loadPosts();
   };
 
-  const filtered = clientFilterPosts(posts, search);
+  let filtered = clientFilterPosts(posts, search);
+
+  if (statusFilter !== "all") {
+    filtered = filtered.filter((temp) => temp.status === statusFilter);
+  }
 
   const [newTitle, setNewTitle] = useState("");
   const [newBody, setNewBody] = useState("");
